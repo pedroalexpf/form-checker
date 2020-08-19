@@ -1,23 +1,26 @@
 // Alerta e Desabilita form de dúvidas quando especialistas estão OFF
 // by Pedro Flores 06/2020
-function horaCerta(){
-    var hora = "23:30:00"; // Setar AQUI qual horário de fechamento do Form
-    var horaate = '23:59:59';
-    var hoje = new Date();
-    var tempo = hoje.getHours() + ":" + hoje.getMinutes() + ":" + hoje.getSeconds();
+window.onload = function horaCerta(){
+
+    const d = new Date();
+    let sysTimeSplit = [d.getHours(), d.getMinutes()]; 
+    let sysTimeSecs = (sysTimeSplit[0] * 60 * 60) + (sysTimeSplit[1] * 60);
   
-  //alert(tempo, hoje);
-      if(hora >= tempo && hora <= horaate){
+    const uTime = "17:00"; // Setar AQUI qual horário de fechamento do Form
+    let uTimeSplit = uTime.split(':'); 
+    let uTimeSecs = (uTimeSplit[0] * 60 * 60) + (uTimeSplit[1] * 60); 
+  
+    if( sysTimeSecs >= uTimeSecs ){
                     
-          document.getElementById("form-duvida").style.display = "block";
-          return document.getElementById("avisooff").style.display = "none";  		
+          document.getElementById("avisooff").innerHTML='<p style="background:#bc4747; color: #fff; padding: 25px;width: 80%;margin: 0 auto;font-size: larger;font-family: Ubuntu; margin-top:100px;"><strong>Atenção:</strong> No momento o envio de casos aos Especialistas está Off, solicite auxílio aos colegas de time ou à Supervisão.'; 	
+            return document.getElementById("form-duvida").style.display = "none";  		
            
       } else {
-           document.getElementById("avisooff").innerHTML='<p style="background:#bc4747; color: #fff; padding: 25px;width: 80%;margin: 0 auto;font-size: larger;font-family: Ubuntu; margin-top:100px;"><strong>Atenção:</strong> No momento o envio de casos aos Especialistas está Off, solicite auxílio aos colegas de time ou à Supervisão.'; 	
-            return document.getElementById("form-duvida").style.display = "none";
+           document.getElementById("form-duvida").style.display = "block";
+          return document.getElementById("avisooff").style.display = "none";
     
       }
   }
   
-  window.onload = horaCerta;
+  
   
