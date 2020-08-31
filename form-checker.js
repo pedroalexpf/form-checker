@@ -22,4 +22,12 @@ window.onload = function horaCerta(){
           return document.getElementById("avisooff").style.display = "none";
   
       }
+       
+	let vldForm = document.querySelector(".wpcf7-textarea");
+	var tempoEmMilisegundos=segundos*1000; //Cálculo p/ Tempo autoreload	
+     var loop= setInterval(function(){//Início Função Autoreload
+     	if(vldForm.value == ""){
+	     document.location.reload();
+	  }
+	},tempoEmMilisegundos) // Fim loop
   }  
